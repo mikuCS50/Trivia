@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+            // TODO: Add code to check answers to questions
+            window.onload = function() {
+
+            //part1
+            const trivia_p1_db = [{q :"What is the stinkiest food in the world ?", a : [" Epicure Cheese", "Natto", "Surströmming", "Kiviak", "Hongeo-hoe"]} ];
+
+                //create element
+                let p1_question = document.body.querySelector("#p1_question");
+                let p1_q_elm = document.createElement("h3");
+                p1_q_elm.setAttribute("id", "p1_q_elm")
+                p1_q_elm.textContent = trivia_p1_db[0]["q"];
+                p1_question.appendChild(p1_q_elm);
+
+                let p1_answer = document.body.querySelector("#p1_answer");
+                for (let i = 0; i < trivia_p1_db[0]["a"].length ; i++){
+                    let p1_a_elm = document.createElement("button");
+                    p1_a_elm.textContent = trivia_p1_db[0]["a"][i];
+                    p1_answer.appendChild(p1_a_elm);
+                    p1_a_elm.setAttribute("id", `p1_a_elm${i}`)
+                };
+
+                //create event
+                const buttons = document.querySelectorAll("button");
+                
+                let message_board = document.createElement("div");
+                p1_q_elm.appendChild(message_board);
+
+                let p1_a_yes_message = document.createElement("h2");
+                p1_a_yes_message.textContent ="Correct!";
+                p1_a_yes_message.setAttribute("id", "correct")
+                
+                let p1_a_no_message = document.createElement("h2");
+                p1_a_no_message.textContent ="Incorrect";
+                p1_a_no_message.setAttribute("id", "incorrect")
+                        
+                for (let i = 0; i < buttons.length; i++) {
+                    if ( buttons[i].textContent === trivia_p1_db[0]["a"][2]){
+                        buttons[i].addEventListener("click", 
+                            function(){
+                                if (!document.body.contains(p1_a_yes_message)){
+                                    if (document.body.contains(p1_a_no_message)){
+                                        p1_a_no_message.remove(); 
+                                    }
+                                    message_board.appendChild(p1_a_yes_message);
+                                        }
+                                    });
+                                } else {
+                                    buttons[i].addEventListener("click", function(){
+                                        if (!document.body.contains(p1_a_no_message)){
+                                            if (document.body.contains(p1_a_yes_message)){
+                                                p1_a_yes_message.remove(); 
+                                                }
+                                            message_board.appendChild(p1_a_no_message);
+                                            } 
+                                    }); 
+                                }
+                }
+
+
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <div id="p1_question"></div>
+                <div id="p1_answer"></div>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+
+            </div>
+
+        </div>
+    </body>
+</html>
+
+<!--
+https://stackoverflow.com/questions/9916747/why-is-document-body-null-in-my-javascript/9916754
+
+https://tridentwebdesign.blog.fc2.com/blog-entry-578.html
+
+-->
