@@ -23,8 +23,7 @@
                 let p1_question = document.body.querySelector("#p1_question");
                 let p1_q_elm = document.createElement("h3");
                 p1_q_elm.setAttribute("id", "p1_q_elm")
-                
-                //chose db randomly
+
                 p1_q_elm.textContent = trivia_p1_db[0]["q"];
                 p1_question.appendChild(p1_q_elm);
 
@@ -37,85 +36,157 @@
                 };
 
                 const buttons = document.querySelectorAll("button");
-                
+
                 let message_board = document.createElement("div");
                 p1_q_elm.appendChild(message_board);
 
                 let p1_a_yes_message = document.createElement("h2");
                 p1_a_yes_message.textContent ="Correct!";
                 p1_a_yes_message.setAttribute("id", "correct")
-                p1_a_yes_message.style.color = "green"; 
-                
+                p1_a_yes_message.style.color = "green";
+
                 let p1_a_no_message = document.createElement("h2");
                 p1_a_no_message.textContent ="Incorrect";
                 p1_a_no_message.setAttribute("id", "incorrect");
-                p1_a_no_message.style.color = "red"; 
-                        
+                p1_a_no_message.style.color = "red";
+
                 //create event
                 for (let i = 0; i < buttons.length; i++) {
                     if ( buttons[i].textContent === trivia_p1_db[0]["a"][2]){
-                        buttons[i].addEventListener("click", 
+                        buttons[i].addEventListener("click",
                             function(){
-                                
-                                //change button collor 
-                                let counter = 0; 
+
+                                //change button collor
+                                let counter = 0;
                                 for(let el of buttons ){
                                     if( counter === i){
-                                        buttons[counter].style.backgroundColor = "lightgreen"; 
+                                        buttons[counter].style.backgroundColor = "lightgreen";
                                     } else {
-                                        buttons[counter].style.backgroundColor = "#d9edff"; 
+                                        buttons[counter].style.backgroundColor = "#d9edff";
                                     }
-                                    counter++; 
+                                    counter++;
                                 }
                                 //show message
                                 if (!document.body.contains(p1_a_yes_message)){
                                     if (document.body.contains(p1_a_no_message)){
-                                        p1_a_no_message.remove(); 
+                                        p1_a_no_message.remove();
                                     }
                                     message_board.appendChild(p1_a_yes_message);
                                         }
                                     });
                                 } else {
                                     buttons[i].addEventListener("click", function(){
-                                        //change button collor 
-                                        let counter = 0; 
+                                        //change button collor
+                                        let counter = 0;
                                         for(let el of buttons ){
                                             if( counter === i){
-                                                buttons[counter].style.backgroundColor = "coral"; 
+                                                buttons[counter].style.backgroundColor = "coral";
                                             } else {
-                                                buttons[counter].style.backgroundColor = "#d9edff"; 
+                                                buttons[counter].style.backgroundColor = "#d9edff";
                                             }
-                                            counter++; 
+                                            counter++;
                                         }
-                                        
+
                                         //show message
                                         if (!document.body.contains(p1_a_no_message)){
                                             if (document.body.contains(p1_a_yes_message)){
-                                                p1_a_yes_message.remove(); 
+                                                p1_a_yes_message.remove();
                                                 }
                                             message_board.appendChild(p1_a_no_message);
-                                            } 
-                                    }); 
+                                            }
+                                    });
                                 }
                     }
-                //set clear 
-                 let clear = document.querySelector("#p1_clear"); 
+                //set clear
+                 let clear = document.querySelector("#p1_clear");
                 //  clear.style.backgroundColor = "lightblue";
                  clear.addEventListener("click", function(){
                      if (document.body.contains(p1_a_yes_message)){
-                            p1_a_yes_message.remove(); 
+                            p1_a_yes_message.remove();
                     } else if (document.body.contains(p1_a_no_message)){
-                            p1_a_no_message.remove(); 
-                    }; 
+                            p1_a_no_message.remove();
+                    };
                     for (let el of buttons){
-                        el.style.backgroundColor = "#d9edff"; 
+                        el.style.backgroundColor = "#d9edff";
                     }
                  })
-                    
-            //part2 
 
+            //part2
+            const trivia_p2_db = [{q :"Which country has the longest history in the world ?", a : "iran"}];
 
-            }
+            //create elements
+            let p2_question = document.body.querySelector("#p2_question");
+            let p2_q_elm = document.createElement("h3");
+            p2_q_elm.setAttribute("id", "p2_q_elm");
+
+            p2_q_elm.textContent = trivia_p2_db[0]["q"];
+            p2_question.appendChild(p2_q_elm);
+
+            let p2_answer = document.body.querySelector("#p2_answer");
+            let input_board = document.createElement("div");
+            input_board.setAttribute("id","input_board");
+
+            let input = document.createElement("input");
+            input.setAttribute("id","input");
+            input.setAttribute("type","text");
+
+            let submit = document.createElement("input");
+            submit.setAttribute("id","submit");
+            submit.setAttribute("type","submit");
+            submit.setAttribute("value","Check Answer");
+
+            p2_answer.appendChild(input_board);
+            input_board.appendChild(input);
+            input_board.appendChild(submit);
+
+            let p2_message_board = document.createElement("div");
+            p2_q_elm.appendChild(p2_message_board);
+
+            let p2_a_yes_message = document.createElement("h2");
+            p2_a_yes_message.textContent ="Correct!";
+            p2_a_yes_message.setAttribute("id", "p2_correct")
+            p2_a_yes_message.style.color = "green";
+
+            let p2_a_no_message = document.createElement("h2");
+            p2_a_no_message.textContent ="Incorrect";
+            p2_a_no_message.setAttribute("id", "incorrect");
+            p2_a_no_message.style.color = "red";
+
+            //make event
+            input.addEventListener("change", function(e){
+                input.textContent = e.target.value;
+            });
+            submit.addEventListener("click", function(){
+                console.log(input.textContent);
+                if (input.textContent.toLowerCase() === trivia_p2_db[0]["a"]){
+                    //show message
+                    if (!document.body.contains(p2_a_yes_message)){
+                        if (document.body.contains(p2_a_no_message)){
+                                p2_a_no_message.remove();
+                                    }
+                        p2_message_board.appendChild(p2_a_yes_message);
+                        input.style.backgroundColor = "lightgreen";
+                        }
+                    } else if (!document.body.contains(p2_a_no_message)){
+                                if (document.body.contains(p2_a_yes_message)){
+                                        p2_a_yes_message.remove();
+                                }
+                                p2_message_board.appendChild(p2_a_no_message);
+                                input.style.backgroundColor = "coral";
+                    };
+            });
+            //set clear
+            let p2_clear = document.querySelector("#p2_clear");
+            p2_clear.addEventListener("click", function(){
+                if (document.body.contains(p2_a_yes_message)){
+                        p2_a_yes_message.remove();
+                } else if (document.body.contains(p2_a_no_message)){
+                        p2_a_no_message.remove();
+                    };
+                input.style.backgroundColor = "white";
+                input.value = "";
+                 })
+        }
 
         </script>
 
@@ -144,6 +215,9 @@
                 <hr>
 
                 <!-- TODO: Add free response question here -->
+                <div id="p2_question"></div>
+                <div id="p2_answer"></div>
+                <h5 id="p2_clear">Clear input?</h5>
 
             </div>
 
