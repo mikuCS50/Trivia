@@ -14,7 +14,7 @@
             //part1
             const trivia_p1_db = [{q :"What is the stinkiest food in the world ?", a : [" Epicure Cheese", "Natto", "Surströmming", "Kiviak", "Hongeo-hoe"]} ];
 
-                //create element
+                //create elements
                 let p1_question = document.body.querySelector("#p1_question");
                 let p1_q_elm = document.createElement("h3");
                 p1_q_elm.setAttribute("id", "p1_q_elm")
@@ -29,7 +29,6 @@
                     p1_a_elm.setAttribute("id", `p1_a_elm${i}`)
                 };
 
-                //create event
                 const buttons = document.querySelectorAll("button");
                 
                 let message_board = document.createElement("div");
@@ -38,15 +37,30 @@
                 let p1_a_yes_message = document.createElement("h2");
                 p1_a_yes_message.textContent ="Correct!";
                 p1_a_yes_message.setAttribute("id", "correct")
+                p1_a_yes_message.style.color = "green"; 
                 
                 let p1_a_no_message = document.createElement("h2");
                 p1_a_no_message.textContent ="Incorrect";
-                p1_a_no_message.setAttribute("id", "incorrect")
+                p1_a_no_message.setAttribute("id", "incorrect");
+                p1_a_no_message.style.color = "red"; 
                         
+                //create event
                 for (let i = 0; i < buttons.length; i++) {
                     if ( buttons[i].textContent === trivia_p1_db[0]["a"][2]){
                         buttons[i].addEventListener("click", 
                             function(){
+                                
+                                //change button collor 
+                                let counter = 0; 
+                                for(let el of buttons ){
+                                    if( counter === i){
+                                        buttons[counter].style.backgroundColor = "lightgreen"; 
+                                    } else {
+                                        buttons[counter].style.backgroundColor = "#d9edff"; 
+                                    }
+                                    counter++; 
+                                }
+                                //show message
                                 if (!document.body.contains(p1_a_yes_message)){
                                     if (document.body.contains(p1_a_no_message)){
                                         p1_a_no_message.remove(); 
@@ -56,6 +70,18 @@
                                     });
                                 } else {
                                     buttons[i].addEventListener("click", function(){
+                                        //change button collor 
+                                        let counter = 0; 
+                                        for(let el of buttons ){
+                                            if( counter === i){
+                                                buttons[counter].style.backgroundColor = "coral"; 
+                                            } else {
+                                                buttons[counter].style.backgroundColor = "#d9edff"; 
+                                            }
+                                            counter++; 
+                                        }
+                                        
+                                        //show message
                                         if (!document.body.contains(p1_a_no_message)){
                                             if (document.body.contains(p1_a_yes_message)){
                                                 p1_a_yes_message.remove(); 
@@ -64,7 +90,9 @@
                                             } 
                                     }); 
                                 }
-                }
+                    }
+                    
+            //part2 
 
 
             }
