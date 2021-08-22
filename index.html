@@ -12,12 +12,19 @@
             window.onload = function() {
 
             //part1
-            const trivia_p1_db = [{q :"What is the stinkiest food in the world ?", a : [" Epicure Cheese", "Natto", "Surströmming", "Kiviak", "Hongeo-hoe"]} ];
+            // const trivia_p1_db = [{q :"What is the stinkiest food in the world ?", a : ["Epicure Cheese", "Natto", "Surströmming", "Kiviak", "Hongeo-hoe"]},
+            //                       {q :"What is the highest mountain in the world ?", a : ["Mt.Everest", "Mt. Manaslu", "Mt.K2", "Mt.Fuji", "Mt. Kanchenjunga"]},
+            //                       {q :"What is the stinkiest food in the world ?", a : ["Japan", "Egypt", "Greek", "Iran", "China"]}
+            // ];
+            const trivia_p1_db = [{q :"What is the stinkiest food in the world ?", a : ["Epicure Cheese", "Natto", "Surströmming", "Kiviak", "Hongeo-hoe"]}];
+
 
                 //create elements
                 let p1_question = document.body.querySelector("#p1_question");
                 let p1_q_elm = document.createElement("h3");
                 p1_q_elm.setAttribute("id", "p1_q_elm")
+                
+                //chose db randomly
                 p1_q_elm.textContent = trivia_p1_db[0]["q"];
                 p1_question.appendChild(p1_q_elm);
 
@@ -91,6 +98,19 @@
                                     }); 
                                 }
                     }
+                //set clear 
+                 let clear = document.querySelector("#p1_clear"); 
+                //  clear.style.backgroundColor = "lightblue";
+                 clear.addEventListener("click", function(){
+                     if (document.body.contains(p1_a_yes_message)){
+                            p1_a_yes_message.remove(); 
+                    } else if (document.body.contains(p1_a_no_message)){
+                            p1_a_no_message.remove(); 
+                    }; 
+                    for (let el of buttons){
+                        el.style.backgroundColor = "#d9edff"; 
+                    }
+                 })
                     
             //part2 
 
@@ -115,6 +135,7 @@
                 <!-- TODO: Add multiple choice question here -->
                 <div id="p1_question"></div>
                 <div id="p1_answer"></div>
+                <h5 id="p1_clear">Clear choice?</h5>
 
             </div>
 
