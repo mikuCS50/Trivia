@@ -1,15 +1,15 @@
 # Trivia 
 
-Image
--- 
+### An assignment of CS50x 2021 Week8 -HTML/CSS/JavaScript. 
 
+#### Image
 ![Demo](https://cdn.loom.com/sessions/thumbnails/c38545926952473c970c1d4bdfd5abd8-with-play.gif)
 
-Demo
+#### Demo
 --
 [Video](https://www.loom.com/share/c38545926952473c970c1d4bdfd5abd8)
 
-Reference material
+#### Reference material
 --
 
 * [Why is document.body null in my javascript?](https://stackoverflow.com/questions/9916747/why-is-document-body-null-in-my-javascript/9916754)
